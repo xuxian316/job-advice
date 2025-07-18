@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: none;
+        }
+
+        .main-content.active {
+            display: block;
+        }
+
+        .homepage {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .category-btn {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            padding: 40px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #333;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .category-btn:hover::before {
+            left: 100%;
+        }
+
+        .category-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .category-btn .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .category-btn h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .category-btn p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .secondary-page {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .secondary-page h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .secondary-page .content {
+            line-height: 1.6;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .back-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .research { --color: #4CAF50; }
+        .process { --color: #2196F3; }
+        .analysis { --color: #FF9800; }
+        .regulation { --color: #f44336; }
+        .market { --color: #9C27B0; }
+
+        .category-btn.research { border-top: 4px solid var(--color); }
+        .category-btn.process { border-top: 4px solid var(--color); }
+        .category-btn.analysis { border-top: 4px solid var(--color); }
+        .category-btn.regulation { border-top: 4px solid var(--color); }
+        .category-btn.market { border-top: 4px solid var(--color); }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .homepage {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .category-btn {
+                padding: 30px 15px;
+            }
+            
+            .secondary-page {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>企业管理系统</h1>
+            <p>选择您需要的业务模块</p>
+        </div>
+
+        <!-- 首页 -->
+        <div class="main-content active" id="homepage">
+            <div class="homepage">
+                <button class="category-btn research" onclick="showPage('research')">
+                    <span class="icon">🔬</span>
+                    <h2>研发</h2>
+                    <p>产品研发、技术创新、项目管理</p>
+                </button>
+                
+                <button class="category-btn process" onclick="showPage('process')">
+                    <span class="icon">⚙️</span>
+                    <h2>工艺</h2>
+                    <p>生产工艺、质量控制、流程优化</p>
+                </button>
+                
+                <button class="category-btn analysis" onclick="showPage('analysis')">
+                    <span class="icon">📊</span>
+                    <h2>分析</h2>
+                    <p>数据分析、业务分析、报表统计</p>
+                </button>
+                
+                <button class="category-btn regulation" onclick="showPage('regulation')">
+                    <span class="icon">📋</span>
+                    <h2>法规</h2>
+                    <p>合规管理、法律法规、政策解读</p>
+                </button>
+                
+                <button class="category-btn market" onclick="showPage('market')">
+                    <span class="icon">📈</span>
+                    <h2>市场</h2>
+                    <p>市场调研、销售管理、客户服务</p>
+                </button>
+            </div>
+        </div>
+
+        <!-- 研发页面 -->
+        <div class="main-content" id="research">
+            <div class="secondary-page">
+                <h2>🔬 研发管理</h2>
+                <div class="content">
+                    <p>欢迎来到研发管理模块。这里包含了产品研发的各个环节：</p>
+                    <br>
+                    <h3>主要功能：</h3>
+                    <ul>
+                        <li>产品研发项目管理</li>
+                        <li>技术创新与专利管理</li>
+                        <li>研发进度跟踪</li>
+                        <li>研发成本控制</li>
+                        <li>技术文档管理</li>
+                    </ul>
+                    <br>
+                    <p>通过科学的研发管理，提升产品创新能力和市场竞争力。</p>
+                </div>
+                <button class="back-btn" onclick="showPage('homepage')">返回首页</button>
+            </div>
+        </div>
+
+        <!-- 工艺页面 -->
+        <div class="main-content" id="process">
+            <div class="secondary-page">
+                <h2>⚙️ 工艺管理</h2>
+                <div class="content">
+                    <p>工艺管理模块致力于优化生产流程，提升产品质量：</p>
+                    <br>
+                    <h3>核心内容：</h3>
+                    <ul>
+                        <li>生产工艺标准化</li>
+                        <li>质量控制体系</li>
+                        <li>工艺流程优化</li>
+                        <li>设备维护管理</li>
+                        <li>生产效率提升</li>
+                    </ul>
+                    <br>
+                    <p>通过精细化的工艺管理，确保产品质量稳定可靠。</p>
+                </div>
+                <button class="back-btn" onclick="showPage('homepage')">返回首页</button>
+            </div>
+        </div>
+
+        <!-- 分析页面 -->
+        <div class="main-content" id="analysis">
+            <div class="secondary-page">
+                <h2>📊 数据分析</h2>
+                <div class="content">
+                    <p>数据分析模块为企业决策提供有力支撑：</p>
+                    <br>
+                    <h3>分析内容：</h3>
+                    <ul>
+                        <li>业务数据分析</li>
+                        <li>财务报表分析</li>
+                        <li>市场趋势分析</li>
+                        <li>运营效率分析</li>
+                        <li>风险评估分析</li>
+                    </ul>
+                    <br>
+                    <p>用数据驱动决策，用分析指导发展。</p>
+                </div>
+                <button class="back-btn" onclick="showPage('homepage')">返回首页</button>
+            </div>
+        </div>
+
+        <!-- 法规页面 -->
+        <div class="main-content" id="regulation">
+            <div class="secondary-page">
+                <h2>📋 法规合规</h2>
+                <div class="content">
+                    <p>法规合规模块帮助企业规范运营，降低法律风险：</p>
+                    <br>
+                    <h3>管理范围：</h3>
+                    <ul>
+                        <li>法律法规跟踪</li>
+                        <li>合规检查管理</li>
+                        <li>政策解读分析</li>
+                        <li>风险预警机制</li>
+                        <li>合规培训体系</li>
+                    </ul>
+                    <br>
+                    <p>严格遵守法律法规，确保企业合规经营。</p>
+                </div>
+                <button class="back-btn" onclick="showPage('homepage')">返回首页</button>
+            </div>
+        </div>
+
+        <!-- 市场页面 -->
+        <div class="main-content" id="market">
+            <div class="secondary-page">
+                <h2>📈 市场营销</h2>
+                <div class="content">
+                    <p>市场营销模块助力企业拓展市场，提升品牌影响力：</p>
+                    <br>
+                    <h3>业务范围：</h3>
+                    <ul>
+                        <li>市场调研分析</li>
+                        <li>销售渠道管理</li>
+                        <li>客户关系维护</li>
+                        <li>品牌推广策略</li>
+                        <li>营销效果评估</li>
+                    </ul>
+                    <br>
+                    <p>精准营销策略，打造市场竞争优势。</p>
+                </div>
+                <button class="back-btn" onclick="showPage('homepage')">返回首页</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // 隐藏所有页面
+            const allPages = document.querySelectorAll('.main-content');
+            allPages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 显示指定页面
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // 更新页面标题
+            if (pageId === 'homepage') {
+                document.querySelector('.header h1').textContent = '企业管理系统';
+                document.querySelector('.header p').textContent = '选择您需要的业务模块';
+            } else {
+                const pageTitle = {
+                    'research': '研发管理',
+                    'process': '工艺管理', 
+                    'analysis': '数据分析',
+                    'regulation': '法规合规',
+                    'market': '市场营销'
+                };
+                document.querySelector('.header h1').textContent = pageTitle[pageId];
+                document.querySelector('.header p').textContent = '专业的管理解决方案';
+            }
+        }
+    </script>
+</body>
+</html>
