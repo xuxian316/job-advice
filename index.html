@@ -462,72 +462,25 @@
                 </div>
 
                 <div class="content-section">
-                    <h3>学习资源</h3>
-                    <div class="resources-grid">
-                        <div class="resource-card">
-                            <h4>专业期刊</h4>
-                            <p>J. Org. Chem, Org. Lett等顶级期刊</p>
-                            <a href="#" class="link">查看期刊列表 →</a>
-                        </div>
-                        <div class="resource-card">
-                            <h4>在线课程</h4>
-                            <p>Coursera、edX有机化学高级课程</p>
-                            <a href="#" class="link">浏览课程 →</a>
-                        </div>
-                        <div class="resource-card">
-                            <h4>专业网站</h4>
-                            <p>Reaxys、SciFinder文献数据库</p>
-                            <a href="#" class="link">访问网站 →</a>
-                        </div>
-                        <div class="resource-card">
-                            <h4>行业会议</h4>
-                            <p>ACS、RSC国际化学会议</p>
-                            <a href="#" class="link">会议信息 →</a>
-                        </div>
-                    </div>
-                </div>
+                    <h3>Comment</h3>
+                    
 
                 <div class="content-section" id="job-listings-module">
                             <h3>最新招聘信息</h3>
-                            <div class="job-listings">
-                                <div class="job-item">
-                                    <h4>有机合成研究员</h4>
-                                    <div class="company">恒瑞医药</div>
-                                    <div class="location">📍 上海</div>
-                                    <div class="salary">💰 15-25万/年</div>
-                                </div>
-                                <div class="job-item">
-                                    <h4>药物化学研究员</h4>
-                                    <div class="company">信达生物</div>
-                                    <div class="location">📍 苏州</div>
-                                    <div class="salary">💰 18-30万/年</div>
-                                </div>
-                                <div class="job-item">
-                                    <h4>有机合成工程师</h4>
-                                    <div class="company">华东医药</div>
-                                    <div class="location">📍 杭州</div>
-                                    <div class="salary">💰 12-20万/年</div>
-                                </div>
-                                <div class="job-item">
-                                    <h4>高级研发工程师</h4>
-                                    <div class="company">复星医药</div>
-                                    <div class="location">📍 北京</div>
-                                    <div class="salary">💰 20-35万/年</div>
-                                </div>
-                            </div>
+                          
                             <button id="view-excel-jobs-btn" style="margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; border-radius: 5px;">
                                 查看更多招聘 (Excel)
                             </button>
                         </div>
 
-<div id="excel-viewer-container" style="display: none; margin-top: 30px; border: 1px solid #ddd; padding: 20px;">
-    <h4>详细招聘信息 (Excel)</h4>
-    <div id="excel-display-area" style="width: 100%; height: 500px; overflow: auto;">
-        </div>
-    <button id="close-excel-viewer-btn" style="margin-top: 15px; padding: 8px 15px; background-color: #dc3545; color: white; border: none; cursor: pointer; border-radius: 5px;">
-        关闭
-    </button>
-</div>
+                            <div id="excel-viewer-container" style="display: none; margin-top: 30px; border: 1px solid #ddd; padding: 20px;">
+                        <h4>详细招聘信息 (Excel)</h4>
+                        <div id="excel-display-area" style="width: 100%; height: 500px; overflow: auto;">
+                            </div>
+                        <button id="close-excel-viewer-btn" style="margin-top: 15px; padding: 8px 15px; background-color: #dc3545; color: white; border: none; cursor: pointer; border-radius: 5px;">
+                            关闭
+                        </button>
+                    </div>
 
         <div class="main-content" id="process">
             <div class="secondary-page">
@@ -1025,5 +978,49 @@
             }
         }
     </script>
-</body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const viewExcelBtn = document.getElementById('view-excel-jobs-btn');
+    const excelViewerContainer = document.getElementById('excel-viewer-container');
+    const excelDisplayArea = document.getElementById('excel-display-area');
+    const closeExcelBtn = document.getElementById('close-excel-viewer-btn');
+
+    // **在这里替换为您的 Excel 文件的公开访问 URL**
+    // 
+    // 1. 如果您使用 Google Sheets (推荐):
+    //    将您的 Excel 文件上传到 Google Drive，打开它，然后点击 "文件" > "共享" > "发布到网络" > "嵌入"，
+    //    复制 iframe 标签中的 src 属性值。它通常以 'https://docs.google.com/spreadsheets/d/e/' 开头。
+    const excelFileUrl = 'https://docs.google.com/spreadsheets/d/1-nVu8FDF0AsTmEt7v3l0DOImlSInpp5z/edit?usp=sharing&ouid=107515239759033416639&rtpof=true&sd=true'; 
+    
+    // 2. 如果您使用 Microsoft Office Online (OneDrive/SharePoint):
+    //    将您的 Excel 文件上传到 OneDrive/SharePoint，右键点击文件，选择“嵌入”，
+    //    复制 iframe 标签中的 src 属性值。它通常以 'https://view.officeapps.live.com/op/embed.aspx?src=' 开头。
+    // const excelFileUrl = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent('https://yourwebsite.com/path/to/your_job_listings.xlsx');
+
+    viewExcelBtn.addEventListener('click', function() {
+        // 避免重复创建 iframe
+        if (!excelDisplayArea.querySelector('iframe')) {
+            const iframe = document.createElement('iframe');
+            iframe.src = excelFileUrl;
+            iframe.width = '100%';
+            iframe.height = '480px'; // 根据需要调整 iframe 的高度
+            iframe.frameBorder = '0'; // 移除边框
+            iframe.allowFullscreen = true; // 允许全屏
+            iframe.title = '招聘信息Excel查看器'; // 提升可访问性
+            excelDisplayArea.appendChild(iframe);
+        }
+        excelViewerContainer.style.display = 'block'; // 显示 Excel 查看器容器
+        viewExcelBtn.style.display = 'none'; // 隐藏“查看更多”按钮
+    });
+
+    closeExcelBtn.addEventListener('click', function() {
+        excelViewerContainer.style.display = 'none'; // 隐藏 Excel 查看器容器
+        const iframe = excelDisplayArea.querySelector('iframe');
+        if (iframe) {
+            iframe.remove(); // 移除 iframe，清空内容，以便下次打开时重新加载
+        }
+        viewExcelBtn.style.display = 'block'; // 重新显示“查看更多”按钮
+    });
+});
+</script></body>
 </html>
