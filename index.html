@@ -487,37 +487,47 @@
                     </div>
                 </div>
 
-                <div class="content-section">
-                    <h3>最新招聘信息</h3>
-                    <div class="job-listings">
-                        <div class="job-item">
-                            <h4>有机合成研究员</h4>
-                            <div class="company">恒瑞医药</div>
-                            <div class="location">📍 上海</div>
-                            <div class="salary">💰 15-25万/年</div>
+                <div class="content-section" id="job-listings-module">
+                            <h3>最新招聘信息</h3>
+                            <div class="job-listings">
+                                <div class="job-item">
+                                    <h4>有机合成研究员</h4>
+                                    <div class="company">恒瑞医药</div>
+                                    <div class="location">📍 上海</div>
+                                    <div class="salary">💰 15-25万/年</div>
+                                </div>
+                                <div class="job-item">
+                                    <h4>药物化学研究员</h4>
+                                    <div class="company">信达生物</div>
+                                    <div class="location">📍 苏州</div>
+                                    <div class="salary">💰 18-30万/年</div>
+                                </div>
+                                <div class="job-item">
+                                    <h4>有机合成工程师</h4>
+                                    <div class="company">华东医药</div>
+                                    <div class="location">📍 杭州</div>
+                                    <div class="salary">💰 12-20万/年</div>
+                                </div>
+                                <div class="job-item">
+                                    <h4>高级研发工程师</h4>
+                                    <div class="company">复星医药</div>
+                                    <div class="location">📍 北京</div>
+                                    <div class="salary">💰 20-35万/年</div>
+                                </div>
+                            </div>
+                            <button id="view-excel-jobs-btn" style="margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; border-radius: 5px;">
+                                查看更多招聘 (Excel)
+                            </button>
                         </div>
-                        <div class="job-item">
-                            <h4>药物化学研究员</h4>
-                            <div class="company">信达生物</div>
-                            <div class="location">📍 苏州</div>
-                            <div class="salary">💰 18-30万/年</div>
-                        </div>
-                        <div class="job-item">
-                            <h4>有机合成工程师</h4>
-                            <div class="company">华东医药</div>
-                            <div class="location">📍 杭州</div>
-                            <div class="salary">💰 12-20万/年</div>
-                        </div>
-                        <div class="job-item">
-                            <h4>高级研发工程师</h4>
-                            <div class="company">复星医药</div>
-                            <div class="location">📍 北京</div>
-                            <div class="salary">💰 20-35万/年</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+<div id="excel-viewer-container" style="display: none; margin-top: 30px; border: 1px solid #ddd; padding: 20px;">
+    <h4>详细招聘信息 (Excel)</h4>
+    <div id="excel-display-area" style="width: 100%; height: 500px; overflow: auto;">
         </div>
+    <button id="close-excel-viewer-btn" style="margin-top: 15px; padding: 8px 15px; background-color: #dc3545; color: white; border: none; cursor: pointer; border-radius: 5px;">
+        关闭
+    </button>
+</div>
 
         <div class="main-content" id="process">
             <div class="secondary-page">
